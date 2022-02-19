@@ -58,6 +58,7 @@ function calc() {
         memory.carry = "";
         memory.operator = "";
         console.log(memory);
+        memory2 = 0;
       } else {
         memory.operator = operator.id;
       }
