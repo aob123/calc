@@ -5,31 +5,15 @@ let operators = document.querySelectorAll(".operators");
 let memory = {
   a: "",
   b: "",
-  carry: "",
   operator: "",
 };
 
 let memory2 = 0;
 
-function initMemory() {
-  
-  memory = {
-    a: "",
-    b: "",
-    carry: "",
-    operator : "",
-  }
-  
-  console.log(memory)
-}
 
 //Calculator
-
 function calc() {
   //Target each number element in numbers
-
-  display.innerText = "0";
-
   for (const number of numbers) {
     number.addEventListener("click", () => {
       if (memory.operator == "") {
@@ -48,22 +32,18 @@ function calc() {
     operator.addEventListener("click", () => {
       if (operator.id == "=") {
         operate();
-  
       } else if (operator.id == "C") {
         memory.b = "";
         updateDisplay(memory.a, memory.b, memory2);
-      } else if (operator.id == "AC") {
+      } else if (operator.id == "AC") { //Reset memory to default
         memory.a = "";
         memory.b = "";
-        memory.carry = "";
         memory.operator = "";
-        console.log(memory);
         memory2 = 0;
       } else {
-        memory.operator = operator.id;
+        memory.operator = operator.id; //Sets the chosen operator
       }
-      updateDisplay(memory.a, memory.b, memory2);
-      
+      updateDisplay(memory.a, memory.b, memory2); //Update the display
       console.table(memory);
       console.log(memory2)
     });
@@ -71,12 +51,12 @@ function calc() {
 }
 
 //Operate
-
 function operate() {
   let a = Number(memory.a);
   let b = Number(memory.b);
   let operator = memory.operator;
 
+  //Performs operation using chosen operator
   switch (operator) {
     case "+":
       memory2 = a + b;
@@ -94,12 +74,9 @@ function operate() {
     case "%":
       memory2 = a * (b / 100);
   }
-  
-  // return;
 }
 
 //Update Display
-
 function updateDisplay(a, b, c) {
   if (a !== "" && b == "" && c == "") {
     display.innerText = a;
